@@ -4,7 +4,15 @@ metadata:
   name: ingress-hosts
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
 spec:
+  tls:
+    - hosts:
+        - result.devopsintheclouds.com
+      secretName: result-tls
+    - hosts:
+        - vote.devopsintheclouds.com
+      secretName: vote-tls      
   rules:
   - host: result.devopsintheclouds.com
     http:
